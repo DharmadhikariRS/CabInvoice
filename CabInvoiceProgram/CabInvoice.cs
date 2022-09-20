@@ -23,9 +23,19 @@ namespace CabInvoiceProgram
             else
             {
                 totalFare = ride.Distance * ride.FarePerKm + ride.FarePerMin * ride.Time;
-
             }
             return Math.Max(totalFare, ride.MinFare);
         }
+        public double CabInvoiceFare(Ride[] ride)
+        {
+            double totalFare = 0;
+            foreach (Ride ride1 in ride)
+            {
+                totalFare += CabInvoiceFare(ride1);
+            }
+            return totalFare;
+        }
+
+
     }
     }

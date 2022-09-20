@@ -35,5 +35,23 @@ namespace CabInvoiceTest
             }
 
         }
+        [Test]
+        public void Given_Multiple_Ride_Details_Returns_TotalFare()
+        {
+            try
+            {
+                Ride[] ride = { new Ride(5, 10, CabType.NORMAL_RIDE), new Ride(5, 10, CabType.PREMIUM_RIDE) };
+
+                cabInvoice = new CabInvoice();
+
+                double actual = cabInvoice.CabInvoiceFare(ride);
+                double total = 155;
+                Assert.AreEqual(total, actual);
+            }
+            catch (CabInvoiceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

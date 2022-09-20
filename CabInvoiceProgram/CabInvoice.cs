@@ -35,7 +35,15 @@ namespace CabInvoiceProgram
             }
             return totalFare;
         }
-
+        public EnhancedInvoiceWithAvarageFare CalculateAvarageFare(Ride[] ride)
+        {
+            double Totalfare = 0;
+            foreach (var item in ride)
+            {
+                Totalfare += CabInvoiceFare(item);
+            }
+            return (new EnhancedInvoiceWithAvarageFare(ride.Length, Totalfare));
+        }
 
     }
     }

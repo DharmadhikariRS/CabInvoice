@@ -53,5 +53,29 @@ namespace CabInvoiceTest
                 Console.WriteLine(ex.Message);
             }
         }
+        [Test]
+        public void Given_Dist_Time_RideStyle_Return_AvarageFare_For_Multiple_Ride()
+        {
+            try
+            {
+                //Assembly
+                cabInvoice = new CabInvoice();
+                Ride[] ride = { new Ride(5, 10, CabType.NORMAL_RIDE), new Ride(10, 5, CabType.PREMIUM_RIDE) };
+                EnhancedInvoiceWithAvarageFare Expected = new EnhancedInvoiceWithAvarageFare(2, 220);
+                ///Act
+                object ActualFare = cabInvoice.CalculateAvarageFare(ride);
+                ///Assert
+                Assert.AreEqual(ActualFare, Expected);
+            }
+            catch (CabInvoiceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
     }
 }
